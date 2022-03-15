@@ -10,8 +10,8 @@ const Input = (props) => {
             type={ props.type }
             id={ props.id }
             name={ props.name }
-            // value={ props.value }
-            // onChange={ props.onChange }
+            value={ props.value }
+            onChange={ props.onChange }
           />
         </label>
       </div>
