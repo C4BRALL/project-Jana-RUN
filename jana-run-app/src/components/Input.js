@@ -1,4 +1,5 @@
 import React from "react";
+import { InputForm } from "./Elements/LoginElements";
 
 const Input = (props) => {
   return (
@@ -6,12 +7,8 @@ const Input = (props) => {
         <label htmlFor={ props.id }>
           { props.labelName }
           <br />
-          <input
-            type={ props.type }
-            id={ props.id }
-            name={ props.name }
-            value={ props.value }
-            onChange={ props.onChange }
+          <InputForm
+            { ...props }
           />
         </label>
       </div>

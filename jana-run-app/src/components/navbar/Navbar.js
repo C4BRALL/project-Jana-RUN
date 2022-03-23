@@ -14,6 +14,9 @@ const Navbar = () => {
         <NavLink to="/wpp">
           Grupo no Wathsapp
         </NavLink>
+        <NavLink to="/signin">
+          Entrar
+        </NavLink>
         <NavLink to="/contact">
           Contato
         </NavLink>
