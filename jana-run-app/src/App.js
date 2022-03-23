@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import WppGroup from "./pages/WppGroup";
 import Contact from "./pages/Contact";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" exact element={ <Home /> }></Route>
         <Route path="/wpp" element={ <WppGroup /> }></Route>
         <Route path="/signin" element={ <Login /> }></Route>
+        <Route path="/register" element={ <Register /> }></Route>
         <Route path="/contact" element={ <Contact /> }></Route>
         <Route path="*" element={ <NotFound /> }></Route>
       </Routes>

@@ -13,7 +13,7 @@ let formElements = [{
   key: 'email',
 }]
 
-export default function Login(props) { 
+export default function Register(props) { 
   const [ formData, setFormData ] = useState( [] );
   const onInputChange = (value, key) => {
     setFormData({ ...formData, ...{ [key]: value } })
@@ -25,7 +25,7 @@ export default function Login(props) {
   return (
     <div>
       <LoginBody>
-        <h1>Faça seu login: </h1>
+        <h1>Faça seu Registro: </h1>
       </LoginBody>
       <Forms>
         {
@@ -42,10 +42,11 @@ export default function Login(props) {
           })
         }
         <button onClick={ onSubmit }>Submit</button>
+        <br/>
         <Link
-          to="/register"
+          to="/signin"
         >
-          Registrar
+          entrar
         </Link>
       </Forms>
     </div>
