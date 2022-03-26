@@ -1,8 +1,7 @@
-import usersData from '../../services/api'
 import { VERIFY_LOGIN } from '../actions';
 
 const INITAL_STATE = {
-  users: {usersData},
+  users: {},
 }
 
 const usersReducer = (state = INITAL_STATE, action) => {

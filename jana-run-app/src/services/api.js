@@ -6,9 +6,8 @@ const api = axios.create({
 
 const usersData = () => {
   const users = api.get('users').then(({ data }) => {
-    return data;
+    return data.user;
   })
-  console.log(users);
   return users;
 };
 
