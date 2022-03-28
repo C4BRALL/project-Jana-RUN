@@ -11,7 +11,7 @@ module.exports = {
       const user = await User.find();
       return response.status(200).json({ user });
     } catch (err) {
-      response.status(500).json({ error: err.message });
+      response.status(500).json({ error: 'User already exists!' });
     }
   },
 
@@ -34,7 +34,7 @@ module.exports = {
       await user.save();
       return response.status(201).json({ message: 'user created succesfully!' });
     } catch (err) {
-      response.status(400).json({ error: err.message });
+      response.status(400).json({ error: 'User already exists!' });
     }
   },
   
@@ -53,7 +53,7 @@ module.exports = {
       await response.user.save();
       return response.status(202).json({ message: "User updated succesfully!" });
     } catch (err) {
-      return response.status(500).json({ error: err.message });
+      return response.status(500).json({ error: 'User not found!' });
     }
   },
 
@@ -62,7 +62,7 @@ module.exports = {
       await response.user.remove();
       return response.status(200).json({ message: "User deleted succesfully!" });
     } catch (err) {
-      return response.status(500).json({ error: err.message });
+      return response.status(500).json({ error: 'User not found!' });
     }
   },
 };
