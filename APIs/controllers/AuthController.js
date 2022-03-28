@@ -4,6 +4,9 @@ const { response } = require('express');
 const User = require('../models/user');
 const { update } = require('../models/user');
 const routes = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const authconfig = require('../config/auth');
 
 module.exports = {
   async index(request, response) {
@@ -38,6 +41,27 @@ module.exports = {
     }
   },
   
+  async authenticateUser(request, response) {
+    const { email, password } = request.body;
+
+    const user = await User.findOne({ email }).select('+password');
+
+    if (!user)
+      return response.status(400).json({ error: 'User not found!' });
+
+    if (!await bcrypt.compare(password, user.password))
+      return response.status(400).json({ error: 'Invalid password or email!' });
+
+    user.password = undefined;
+
+    const token = jwt.sign({ _id: user._id }, authconfig.secret, {
+      expiresIn: 50400,
+    })
+
+    response.send({ user, token });
+
+  },
+
   async update(request, response) {
     const { name, email, password, createdAt } = request.body;
 
@@ -65,4 +89,5 @@ module.exports = {
       return response.status(500).json({ error: 'User not found!' });
     }
   },
+
 };

@@ -7,6 +7,8 @@ routes.get('/users', userController.index);
 
 routes.post('/users', userController.store);
 
+routes.post('/authenticate', userController.authenticateUser);
+
 routes.put('/users/:id', UserMiddlewares.validateId, userController.update);
 
 routes.delete('/users/:id', UserMiddlewares.validateId, userController.delete);

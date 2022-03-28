@@ -14,7 +14,7 @@ module.exports = {
         return response.status(404).json({ error: 'User not found!'});
       }
     } catch(err) {
-      return response.status(500).json({ error: err.message });
+      return response.status(500).json({ error: 'User not found!' });
     }
     next();
   }
