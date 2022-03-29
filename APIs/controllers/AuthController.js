@@ -64,7 +64,7 @@ module.exports = {
   },
 
   async update(request, response) {
-    const { name, email, password, createdAt } = request.body;
+    const { name, email, password } = request.body;
 
     if(!name && !email && !password ) {
       return response.status(400).json({ error: "You must inform a new name or a new email" });

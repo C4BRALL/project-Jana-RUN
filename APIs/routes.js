@@ -5,14 +5,14 @@ const UserMiddlewares = require('./middlewares/UserMiddlewares');
 
 routes.get('/users', userController.index);
 
-routes.post('/users', userController.store);
+routes.post('/register', userController.store);
 
 routes.post('/authenticate', userController.authenticateUser);
 
-routes.get('/app', (req, res) => res.send({ok: true}));
+routes.get('/', UserMiddlewares.authorizateUser);
 
-routes.put('/users/:id', UserMiddlewares.validateId, userController.update);
+routes.put('/user/:id', UserMiddlewares.validateId, userController.update);
 
-routes.delete('/users/:id', UserMiddlewares.validateId, userController.delete);
+routes.delete('/user/:id', UserMiddlewares.validateId, userController.delete);
 
 module.exports = routes;
