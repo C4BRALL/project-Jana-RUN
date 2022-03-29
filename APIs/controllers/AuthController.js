@@ -6,7 +6,7 @@ const { update } = require('../models/user');
 const routes = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const authconfig = require('../config/auth');
+const { generateToken } = require('../config/jwt');
 
 module.exports = {
   async index(request, response) {
@@ -30,11 +30,14 @@ module.exports = {
       name,
       email,
       password,
-      createdAt
+      createdAt,
     })
 
+    // user.token =  await generateToken({ _id: user._id });
+    
     try {
       await user.save();
+      // return response.send({ user });
       return response.status(201).json({ message: 'user created succesfully!' });
     } catch (err) {
       response.status(400).json({ error: 'User already exists!' });
@@ -54,12 +57,10 @@ module.exports = {
 
     user.password = undefined;
 
-    const token = jwt.sign({ _id: user._id }, authconfig.secret, {
-      expiresIn: 50400,
-    })
-
-    response.send({ user, token });
-
+    response.send({
+      user,
+      token: await generateToken({ _id: user._id })
+    });
   },
 
   async update(request, response) {
